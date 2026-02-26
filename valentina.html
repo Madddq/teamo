@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentina 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+font-family:'Poppins', sans-serif;
+height:100vh;
+overflow:hidden;
+background: radial-gradient(circle at top, #ff758c, #ff7eb3, #ffb199);
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+}
+
+/* AUDIO OCULTO */
+audio{ display:none; }
+
+.container{
+position:relative;
+backdrop-filter:blur(20px);
+background:rgba(255,255,255,0.15);
+border-radius:30px;
+padding:40px;
+text-align:center;
+box-shadow:0 0 60px rgba(0,0,0,0.3);
+animation:fadeIn 2s ease;
+width:90%;
+max-width:700px;
+}
+
+h1{
+font-family:'Playfair Display', serif;
+font-size:clamp(35px,5vw,55px);
+margin-bottom:20px;
+}
+
+p{
+margin:15px 0;
+line-height:1.7;
+font-size:clamp(16px,2vw,20px);
+}
+
+.signature{
+margin-top:25px;
+font-weight:500;
+}
+
+.heart{
+font-size:50px;
+animation:beat 1.5s infinite;
+margin-bottom:15px;
+}
+
+@keyframes beat{
+0%{transform:scale(1);}
+25%{transform:scale(1.2);}
+40%{transform:scale(1);}
+60%{transform:scale(1.2);}
+100%{transform:scale(1);}
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(30px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+.floating-heart{
+position:absolute;
+color:rgba(255,255,255,0.6);
+animation:floatUp linear infinite;
+}
+
+@keyframes floatUp{
+from{transform:translateY(100vh) scale(1);}
+to{transform:translateY(-10vh) scale(1.5);}
+}
+</style>
+</head>
+<body>
+
+<!-- 🎵 MÚSICA -->
+<audio id="bgMusic" loop>
+  <source src="something-stupid.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container">
+<div class="heart">💖</div>
+
+<h1>Valentina</h1>
+
+<p>
+Desde que llegaste a mi vida,
+todo suena más bonito.
+Hasta el silencio contigo se siente perfecto.
+</p>
+
+<p>
+Puede que diga cosas tontas a veces…
+pero lo que siento por ti
+es lo más real que tengo.
+</p>
+
+<p>
+Si tuviera que elegir de nuevo,
+te elegiría mil veces.
+Sin pensarlo.
+</p>
+
+<div class="signature">
+Con amor,<br>
+Agustín 💌
+</div>
+</div>
+
+<script>
+const music = document.getElementById("bgMusic");
+
+// Función para iniciar música
+function startMusic(){
+    music.volume = 0.6;
+    music.play().catch(()=>{});
+}
+
+// Intento automático
+window.addEventListener("load", startMusic);
+
+// Si el navegador bloquea autoplay, se activa con interacción
+document.addEventListener("click", startMusic, { once:true });
+document.addEventListener("touchstart", startMusic, { once:true });
+
+// Corazones flotando
+function createHearts(){
+for(let i=0;i<25;i++){
+let heart=document.createElement("div");
+heart.className="floating-heart";
+heart.innerHTML="💗";
+heart.style.left=Math.random()*100+"vw";
+heart.style.animationDuration=(5+Math.random()*5)+"s";
+heart.style.fontSize=(15+Math.random()*30)+"px";
+document.body.appendChild(heart);
+}
+}
+createHearts();
+</script>
+
+</body>
+</html>
